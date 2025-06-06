@@ -8,19 +8,21 @@ export const App = () => {
   const addOne = () => {
     setCount(prev => {
       const newCount = prev + 1;
-  
+
+      // If increase() is calling this, check new count
       if (isIncrease && newCount % 5 === 0) {
+        // Chain add100
         setTimeout(() => {
           setCount(c => c + 100);
         }, 0);
       }
-  
+
+      // Reset the flag
       setIsIncrease(false);
-  
+
       return newCount;
     });
   };
-  
 
   const add100 = () => {
     setCount(prev => prev + 100);
@@ -32,6 +34,7 @@ export const App = () => {
       add100();
     }
 
+    setIsIncrease(true); // Flag that we're in increase
     addOne();
   };
 
