@@ -3,10 +3,24 @@ import './App.scss';
 
 export const App = () => {
   const [count, setCount] = useState(0);
+  const [isIncrease, setIsIncrease] = useState(false);
 
   const addOne = () => {
-    setCount(prev => prev + 1);
+    setCount(prev => {
+      const newCount = prev + 1;
+  
+      if (isIncrease && newCount % 5 === 0) {
+        setTimeout(() => {
+          setCount(c => c + 100);
+        }, 0);
+      }
+  
+      setIsIncrease(false);
+  
+      return newCount;
+    });
   };
+  
 
   const add100 = () => {
     setCount(prev => prev + 100);
